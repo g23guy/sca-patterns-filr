@@ -27,7 +27,7 @@ Release:      1
 Source:       %{name}-%{version}.tar.gz
 BuildRoot:    %{_tmppath}/%{name}-%{version}
 Buildarch:    noarch
-Requires:     %{name}-base
+Requires:     sca-patterns-base
 
 %description
 Supportconfig Analysis (SCA) appliance patterns to identify known
