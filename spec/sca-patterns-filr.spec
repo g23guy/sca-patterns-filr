@@ -23,7 +23,7 @@ Vendor:       SUSE Support
 License:      GPL-2.0
 Autoreqprov:  on
 Version:      1.2
-Release:      1
+Release:      2
 Source:       %{name}-%{version}.tar.gz
 BuildRoot:    %{_tmppath}/%{name}-%{version}
 Buildarch:    noarch
@@ -59,6 +59,10 @@ install -m %{mode} patterns/%{category}/* $RPM_BUILD_ROOT/%{patdir}/%{category}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 10 2014 jrecord@suse.com
+- added
+  heap-7012478.py
+
 * Wed Dec 20 2013 jrecord@suse.com
 - separated as individual RPM package
 
