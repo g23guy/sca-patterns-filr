@@ -21,7 +21,7 @@ Group:        Documentation/SuSE
 License:      GPL-2.0
 Autoreqprov:  on
 Version:      1.3
-Release:      1
+Release:      2
 Source:       %{name}-%{version}.tar.gz
 BuildRoot:    %{_tmppath}/%{name}-%{version}
 Buildarch:    noarch
@@ -57,6 +57,9 @@ install -m %{mode} patterns/%{category}/* $RPM_BUILD_ROOT/%{patdir}/%{category}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Mon Jan 27 2014 jrecord@suse.com
+- fixed dos format in heap-7012478.py
+
 * Thu Jan 16 2014 jrecord@suse.com
 - relocated files according to FHS
 
