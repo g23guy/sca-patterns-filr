@@ -1,4 +1,7 @@
-# Copyright (C) 2013 SUSE LLC
+# spec file for package sca-patterns-filr
+#
+# Copyright (C) 2014 SUSE LLC
+#
 # This file and all modifications and additions to the pristine
 # package are under the same license as the package itself.
 #
@@ -21,7 +24,7 @@ Group:        Documentation/SuSE
 License:      GPL-2.0
 Autoreqprov:  on
 Version:      1.3
-Release:      2
+Release:      3
 Source:       %{name}-%{version}.tar.gz
 BuildRoot:    %{_tmppath}/%{name}-%{version}
 Buildarch:    noarch
@@ -57,16 +60,4 @@ install -m %{mode} patterns/%{category}/* $RPM_BUILD_ROOT/%{patdir}/%{category}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Jan 27 2014 jrecord@suse.com
-- fixed dos format in heap-7012478.py
-
-* Thu Jan 16 2014 jrecord@suse.com
-- relocated files according to FHS
-
-* Fri Jan 10 2014 jrecord@suse.com
-- added
-  heap-7012478.py
-
-* Wed Dec 20 2013 jrecord@suse.com
-- separated as individual RPM package
 
