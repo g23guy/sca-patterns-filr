@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Sat Feb  8 22:19:04 UTC 2014 - jrecord@suse.com
+
+- Packaged COPYING.GPLv2
+
+-------------------------------------------------------------------
 Fri Jan 31 19:35:37 UTC 2014 - jrecord@suse.com
 
 - fixed dos format in heap-7012478.py
