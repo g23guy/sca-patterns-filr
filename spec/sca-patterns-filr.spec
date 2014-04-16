@@ -15,7 +15,7 @@
 %define patuser root
 %define patgrp root
 %define mode 544
-%define category Filr
+%define category filr
 
 Name:         sca-patterns-filr
 Summary:      Supportconfig Analysis Patterns for Filr
@@ -24,7 +24,7 @@ Group:        System/Monitoring
 License:      GPL-2.0
 Autoreqprov:  on
 Version:      1.3
-Release:      5
+Release:      6
 Source:       %{name}-%{version}.tar.gz
 BuildRoot:    %{_tmppath}/%{name}-%{version}
 Buildarch:    noarch

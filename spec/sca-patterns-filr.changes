@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Apr 16 16:06:09 UTC 2014 - jrecord@suse.com
+
+- Changed to lower case directory for consistency
+
+-------------------------------------------------------------------
 Thu Mar 13 17:27:50 UTC 2014 - jrecord@suse.com
 
 - Fixed FSF address in all patterns
