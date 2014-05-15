@@ -2,7 +2,7 @@
 
 # Title:       Check for Suggested Heap Size
 # Description: Invalid heap sizes may cause Filr high utilization on Java
-# Modified:    2014 Jan 07
+# Modified:    2014 Mar 15
 #
 ##############################################################################
 # Copyright (C) 2014 SUSE LLC
@@ -22,6 +22,7 @@
 #
 #  Authors/Contributors:
 #   Tom Lee (tlee@novell.com)
+#   Jason Record (jrecord@suse.com)
 #
 ##############################################################################
 
@@ -53,6 +54,7 @@ def checkJVMHeapSize():
     fileOpen = "memory.txt"
     section = "/proc/meminfo"
     content = {}
+    minTotalKB = 8193832
     memTotalKB = -1
     if Core.getSection(fileOpen, section, content):
         for line in content:
@@ -69,6 +71,8 @@ def checkJVMHeapSize():
             if "<JavaVirtualMachine" in content[line]:
                 temp = content[line].split()[1]
                 heapMax = temp.split('"')[1].strip()
+                if( len(heapMax) == 0 ):
+                    Core.updateStatus(Core.ERROR, "Error: Missing heap size")
                 if (heapMax.endswith("g")):
                     heapMax = heapMax.strip("g")
                     heapMax = int(heapMax) * 1024 * 1024
@@ -76,13 +80,15 @@ def checkJVMHeapSize():
                     heapMax = heapMax.strip("m")
                     heapMax = int(heapMax) * 1024
                 break
-    print "heapMax=" + str(heapMax) + " (" + str((heapMax*100/memTotalKB)) + "%), memTotalKB=" + str(memTotalKB) + ", memTotalKB-heapMax=" + str((memTotalKB-heapMax))
-    if (heapMax > memTotalKB):
+    #print "heapMax=" + str(heapMax) + " (" + str((heapMax*100/memTotalKB)) + "%), memTotalKB=" + str(memTotalKB) + ", memTotalKB-heapMax=" + str((memTotalKB-heapMax))
+    if (memTotalKB < minTotalKB):
         return 1
-    if ((memTotalKB - heapMax) < (2 * 1024 * 1024)):
+    if (heapMax > memTotalKB):
         return 2
-    if (heapMax < (memTotalKB / 2)):
+    if ((memTotalKB - heapMax) < (2 * 1024 * 1024)):
         return 3
+    if (heapMax < (memTotalKB / 2)):
+        return 4
     return 0
 
 ##############################################################################
@@ -91,10 +97,12 @@ def checkJVMHeapSize():
 
 status = checkJVMHeapSize()
 if( status == 1 ):
-	Core.updateStatus(Core.CRIT, "JVM heap size invalid, exceeds total memory size")
+	Core.updateStatus(Core.WARN, "Insufficient total memory, 8G recommended for large and 12G for all-in-one")
 elif( status == 2 ):
-	Core.updateStatus(Core.WARN, "JVM heap size is set too high, less than 2G of memory remaining")
+	Core.updateStatus(Core.CRIT, "JVM heap size invalid, exceeds total memory size")
 elif( status == 3 ):
+	Core.updateStatus(Core.WARN, "JVM heap size is set too high, less than 2G of memory remaining")
+elif( status == 4 ):
 	Core.updateStatus(Core.WARN, "JVM heap size is set too low at less than 50 percent of total memory")
 else:
 	Core.updateStatus(Core.IGNORE, "JVM heap size OK")

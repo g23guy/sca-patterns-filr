@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu May 15 16:11:04 UTC 2014 - jrecord@suse.com
+
+- Fixed heap-7012478.py integer and print errors
+
+-------------------------------------------------------------------
 Wed Apr 16 16:06:09 UTC 2014 - jrecord@suse.com
 
 - Changed to lower case directory for consistency
